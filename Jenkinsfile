@@ -19,8 +19,10 @@ pipeline {
           sh './kubectl get pods'
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform --version -- /bin/bash'
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform init'
-          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform plan'
+          sh './kubectl exec terraform-569966f9fd-s5t2l -- terraform plan'
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform validate'
+              
+
 }
       }
     }
