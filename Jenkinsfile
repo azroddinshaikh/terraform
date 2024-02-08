@@ -18,10 +18,10 @@ pipeline {
           sh './kubectl get nodes'
           sh './kubectl get pods'
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform --version -- /bin/bash'
-          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform init'
-          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform validate'
-          sh './kubectl exec terraform-569966f9fd-s5t2l -n default -- terraform destroy'
-          sh './kubectl exec terraform-569966f9fd-s5t2l -n default -- terraform apply'
+          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform init terraform/'
+          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform validate terraform/'
+          sh './kubectl exec terraform-569966f9fd-s5t2l -n default -- terraform apply terraform/'
+          sh './kubectl exec terraform-569966f9fd-s5t2l -n default -- terraform destroy terraform/'
 }
       }
     }
