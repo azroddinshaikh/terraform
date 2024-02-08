@@ -1,8 +1,8 @@
 provider "aws" {
-  region = "your_region"
+  region = "ap-south-1"  # Update with your desired region
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "your_bucket_name"
-  acl    = "private"
+  bucket = "my-bucket-name"
+  acl    = "private"  # Update with your desired ACL
 }
