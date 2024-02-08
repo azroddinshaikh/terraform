@@ -1,14 +1,39 @@
 pipeline {
     agent any
- 
+    
+    environment {
+        AWS_DEFAULT_REGION = 'ap-south-1' // Update with your desired AWS region
+    }
+    
     stages {
-        stage('Install Terraform') {
+        stage('Checkout') {
             steps {
-                sh 'wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg'
-                sh 'echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list'
-                sh 'sudo apt update && sudo apt install terraform'
+                git branch: 'main', url: 'https://github.com/yourusername/your-repo.git'
             }
         }
-        // Add other stages for your pipeline
+        
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
+        
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+        
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
     }
 }
