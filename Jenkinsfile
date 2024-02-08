@@ -21,8 +21,7 @@ pipeline {
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform init'
           sh './kubectl exec terraform-569966f9fd-s5t2l -- terraform plan'
           sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform validate'
-              
-
+          sh './kubectl exec -it terraform-569966f9fd-s5t2l -- terraform apply'
 }
       }
     }
